@@ -1,9 +1,8 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 
-main() => runApp(ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   const ExpensesApp({super.key});
@@ -31,18 +30,18 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Despesas pessoais'),
+          title: const Text('Despesas pessoais'),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
+            const SizedBox(
               width: double.infinity,
               child: Card(
                 color: Colors.blue,
-                child: Text('Gráfico'),
                 elevation: 5,
+                child: Text('Gráfico'),
               ),
             ),
             Column(
@@ -51,7 +50,7 @@ class MyHomePage extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           horizontal: 15,
                           vertical: 10,
                         ),
@@ -60,10 +59,10 @@ class MyHomePage extends StatelessWidget {
                           color: Colors.purple,
                           width: 2,
                         )),
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Text(
-                          tr.value.toString(),
-                          style: TextStyle(
+                          'R\$ ${tr.value.toStringAsFixed(2)}',
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                               color: Colors.purple),
@@ -73,13 +72,15 @@ class MyHomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(tr.title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               )),
                           Text(
-                            tr.date.toString(),
-                            style: TextStyle(color: Colors.grey),
+                            DateFormat('d MMM y').format(tr.date),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
                           )
                         ],
                       )
